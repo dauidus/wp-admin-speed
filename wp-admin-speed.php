@@ -14,47 +14,41 @@
  * Author URI:  http://dauid.us/
  */
 
-// initiate
-block_http();
-function block_http() {
+if( is_admin() ) {
 
-	if( is_admin() ) {
 
-		// todo - determine if wp subfolder install
-	
-		$urlBits = explode("/",$_SERVER["REQUEST_URI"]);
-  		$blogAddress = $urlBits[0]; // address
-  		$secondPart = $urlBits[1];
-  		$thirdPart = $urlBits[2];
+	// todo - determine if wp subfolder install
 
-		// check for multisite support
-  		if ( is_multisite() ) {
-  			if ($thirdPart == 'network') {
-  				// load external resources
-  			}
-  		}
+	$urlBits = explode("/",$_SERVER["REQUEST_URI"]);
+		$blogAddress = $urlBits[0]; // address
+		$secondPart = $urlBits[1];
+		$thirdPart = $urlBits[2];
 
-  		// todo - eventually create option panel to enable/add admin panels
-  		if ( 
-  		// dashboard panel
-  		($thirdPart == '') || 
-  		($thirdPart == 'index.php') || 
-  		// plugins panel
-  		($thirdPart == 'plugins.php') 
-  		) {
-  			// load external resources
-  		}
+	// check for multisite support
+		if ( (is_multisite()) & ($thirdPart == 'network') ) {
+			$fourthPart = $urlBits[3];
+			if ($fourthPart == 'plugin-install.php') { }
+			elseif ($fourthPart == 'theme-install.php') { }
+			elseif ($fourthPart == 'update-core.php') { }
+		}
 
-  		// if above criteria not met
-  		// don't load external resources
-  		else {
+		// todo - eventually create option panel to enable/add admin panels
+		elseif ($thirdPart == '') { } 
+		elseif ($thirdPart == 'index.php') { } 
+		elseif ($thirdPart == 'plugin-install.php') { }
+		elseif ($thirdPart == 'update-core.php') { }
+		elseif ($thirdPart == 'theme-install.php') { }
+		elseif ($thirdPart == 'import.php?import=wordpress') { }
+		elseif ($thirdPart == 'admin.php?page=stats') { }
 
-			! defined( 'ABSPATH' ) && exit;
+		// if above criteria not met
+		// don't load external resources
+		else {
 
 			// block external URL requests
 			defined( 'WP_HTTP_BLOCK_EXTERNAL' ) || define( 'WP_HTTP_BLOCK_EXTERNAL', TRUE );
 			// Block external URL requests
-			defined( 'WP_ACCESSIBLE_HOSTS' ) || define( 'WP_ACCESSIBLE_HOSTS', FALSE );
+			//defined( 'WP_ACCESSIBLE_HOSTS' ) || define( 'WP_ACCESSIBLE_HOSTS', FALSE );
 			// forces the filesystem method
 			defined( 'FS_METHOD' ) || define( 'FS_METHOD', FALSE );
 			// disable cron
@@ -209,6 +203,8 @@ function block_http() {
 				}
 
 			}
-		}
+		
+
+
 	}
 }
