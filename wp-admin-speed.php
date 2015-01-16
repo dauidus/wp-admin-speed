@@ -37,6 +37,7 @@ if( is_admin() ) {
 		elseif ($thirdPart == 'index.php') { } 
 		elseif ($thirdPart == 'plugin-install.php') { }
 		elseif ($thirdPart == 'update-core.php') { }
+		elseif ($thirdPart == 'update-core.php?action=do-plugin-upgrade') { }
 		elseif ($thirdPart == 'theme-install.php') { }
 		elseif ($thirdPart == 'import.php?import=wordpress') { }
 		elseif ($thirdPart == 'admin.php?page=stats') { }
