@@ -41,6 +41,7 @@ if( is_admin() ) {
 		elseif ($thirdPart == 'theme-install.php') { }
 		elseif ($thirdPart == 'import.php?import=wordpress') { }
 		elseif ($thirdPart == 'admin.php?page=stats') { }
+		elseif ($thirdPart == 'admin.php?page=gf_addons') { }
 
 		// if above criteria not met
 		// don't load external resources
