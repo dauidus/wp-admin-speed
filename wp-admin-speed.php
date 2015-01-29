@@ -24,6 +24,7 @@ if( is_admin() ) {
 		$secondPart = $urlBits[1];
 		$thirdPart = $urlBits[2];
 
+	
 	// check for multisite support
 		if ( (is_multisite()) & ($thirdPart == 'network') ) {
 			$fourthPart = $urlBits[3];
@@ -42,6 +43,7 @@ if( is_admin() ) {
 		elseif ($thirdPart == 'import.php?import=wordpress') { }
 		elseif ($thirdPart == 'admin.php?page=stats') { }
 		elseif ($thirdPart == 'admin.php?page=gf_addons') { }
+		//elseif ($thirdPart == 'options-general.php?page=wprocket') { }
 
 		// if above criteria not met
 		// don't load external resources
