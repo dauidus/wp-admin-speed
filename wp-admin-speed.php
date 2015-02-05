@@ -138,7 +138,7 @@ if( is_admin() ) {
 					add_filter( 'get_avatar', array( $this, 'replace_avatar' ), 1, 5 );
 
 					add_action( 'wp_default_styles', array( $this, 'block_styles' ), 9999 );
-					add_action( 'wp_default_scripts', array( $this, 'block_scripts' ), 9999 );
+
 				}
 
 				/**
@@ -179,32 +179,7 @@ if( is_admin() ) {
 					return $styles;
 				}
 
-				/**
-				 * Filter default scripts, unset external url
-				 *
-				 * @param $scripts
-				 *
-				 * @return mixed
-				 */
-				public function block_scripts( $scripts ) {
-
-					if ( ! isset( $scripts->registered ) ) {
-						return $scripts;
-					}
-
-					// if it give registered scripts
-					foreach ( $scripts->registered as $script => $attributes ) {
-
-						// if external url, then set src attribute to null
-						if ( strpos( $attributes->src, '//' ) !== FALSE &&
-								 strpos( $attributes->src, esc_url( $GLOBALS[ '_SERVER' ][ 'HTTP_HOST' ] ) ) !== FALSE ) {
-							$this->external_scripts[]                        = $attributes->handle;
-							$scripts->registered[ $attributes->handle ]->src = NULL;
-						}
-					}
-
-					return $scripts;
-				}
+				
 
 			}
 		
